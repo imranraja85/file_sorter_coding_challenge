@@ -20,11 +20,7 @@ module StudentParser
     end
 
     def sort
-      if sort_by == [:campus, :last_name]
-        fields.sort_by! { |x| [x[:campus], x[:last_name]]}
-      else
-        fields.sort_by! { |x| x[sort_by] }
-      end
+      fields.sort_by!{ |x| Array(sort_by).collect{|s| x[s]}}
     end
 
     def reverse
