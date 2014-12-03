@@ -23,7 +23,7 @@ module StudentParser
       if sort_by == [:campus, :last_name]
         fields.sort_by! { |x| [x[:campus], x[:last_name]]}
       else
-        fields.sort! { |x,y| x[sort_by] <=> y[sort_by] }
+        fields.sort_by! { |x| x[sort_by] }
       end
     end
 
