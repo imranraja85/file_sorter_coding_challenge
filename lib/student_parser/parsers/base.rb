@@ -4,8 +4,7 @@ require 'ostruct'
 module StudentParser
   module Parsers
     class PersonRecord < OpenStruct; end
-
-    class Base
+    module Base
       attr_reader :data, :results
 
       CITIES = {"LA"  => "Los Angeles",
@@ -24,7 +23,7 @@ module StudentParser
           results << PersonRecord.new(
             last_name:      row[columns[:last_name]].strip,
             first_name:     row[columns[:first_name]].strip,
-            campus:         format_campus(row[columns[:campus]].strip),
+            campus:         normalize_campus(row[columns[:campus]].strip),
             date_of_birth:  format_date(row[columns[:date_of_birth]].strip),
             favorite_color: row[columns[:favorite_color]].strip
           )
@@ -33,7 +32,7 @@ module StudentParser
         results
       end
         
-      def format_campus(campus)
+      def normalize_campus(campus)
         CITIES.fetch(campus, campus)  
       end
     end

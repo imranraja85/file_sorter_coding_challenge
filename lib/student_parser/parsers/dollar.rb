@@ -1,6 +1,8 @@
 module StudentParser
   module Parsers
-    class Dollar < Base
+    class Dollar
+      include Base
+
       SEPERATOR = '$'
 
       COLUMNS = {:last_name      => 0,

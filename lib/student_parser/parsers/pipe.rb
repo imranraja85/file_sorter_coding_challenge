@@ -1,6 +1,8 @@
 module StudentParser
   module Parsers
-    class Pipe < Base
+    class Pipe
+      include Base
+
       SEPERATOR = '|'
 
       COLUMNS = {:last_name      => 0,
@@ -13,7 +15,6 @@ module StudentParser
       def format_date(date)
         Date.strptime(date, '%m-%d-%Y')
       end
-
     end
   end
 end

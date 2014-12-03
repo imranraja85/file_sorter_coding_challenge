@@ -1,6 +1,8 @@
 module StudentParser
   module Parsers
-    class Comma < Base
+    class Comma 
+      include Base
+
       SEPERATOR = ','
 
       COLUMNS = {:last_name      => 0,
