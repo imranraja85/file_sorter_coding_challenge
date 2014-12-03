@@ -1,4 +1,5 @@
 require "student_parser/version"
+require "student_parser/parsers/base"
 require "student_parser/parsers/comma"
 require "student_parser/parsers/dollar"
 require "student_parser/parsers/pipe"
