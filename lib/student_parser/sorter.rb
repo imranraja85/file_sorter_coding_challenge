@@ -1,5 +1,5 @@
 module StudentParser
-  class SortRecords
+  class Sorter
     attr_reader :fields, :sort_by, :direction
 
     def self.call(options)

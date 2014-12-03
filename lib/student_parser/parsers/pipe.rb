@@ -3,7 +3,7 @@ module StudentParser
     class Pipe
       include Base
 
-      SEPARATOR = '|'
+      DELIMITER = '|'
 
       COLUMNS = {:last_name      => 0,
                  :first_name     => 1,

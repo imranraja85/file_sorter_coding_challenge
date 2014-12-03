@@ -21,12 +21,12 @@ module StudentParser
         self.class::COLUMNS  
       end
 
-      def separator
-        self.class::SEPARATOR  
+      def delimiter
+        self.class::DELIMITER  
       end
       
       def extract
-        CSV.parse(data, { :col_sep => separator }) do |row|
+        CSV.parse(data, { :col_sep => delimiter }) do |row|
           student_records << PersonRecord.new(
             row[columns[:last_name]].strip,
             row[columns[:first_name]].strip,
