@@ -14,7 +14,7 @@ module StudentParser
 
     def call
       sort
-      reverse if ascending?
+      reverse if descending?
       
       fields
     end
@@ -32,11 +32,11 @@ module StudentParser
     end
 
     def ascending?
-      direction == :ascending  
+      direction == :asc  
     end
 
-    def format_date(date)
-      Date.strptime(date, "%m/%d/%Y")
+    def descending?
+      !ascending? 
     end
   end
 end

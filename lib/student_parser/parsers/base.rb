@@ -12,15 +12,15 @@ module StudentParser
                 "NYC" => "New York City",
                 "SF"  => "San Francisco"}
 
-      def initialize
-        @data = ::File.read('data/comma.txt')
+      def initialize(path)
+        @data = ::File.read(path)
         @results = []
       end
       
       def extract
         columns = self.class::COLUMNS
 
-        CSV.parse(data) do |row|
+        CSV.parse(data, { :col_sep => self.class::SEPERATOR }) do |row|
           results << PersonRecord.new(
             last_name:      row[columns[:last_name]].strip,
             first_name:     row[columns[:first_name]].strip,
