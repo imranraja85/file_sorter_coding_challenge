@@ -1,11 +1,12 @@
 require 'csv'
+require 'ostruct'
 
 module StudentParser
   module Parsers
-    class PersonRecord < Struct.new(:last_name, :first_name, :campus, :date_of_birth, :favorite_color)
+    class PersonRecord < OpenStruct
     end
     class Comma
-      attr_reader :data
+      attr_reader :data, :results
 
       COLUMNS = {:last_name      => 0,
                  :first_name     => 1,
@@ -19,26 +20,25 @@ module StudentParser
 
       def initialize
         @data = ::File.read('data/comma.txt')
+        @results = []
       end
 
       def extract
-        results = []
-
         CSV.parse(data) do |row|
-          results << [
-            row[COLUMNS[:last_name]].strip,
-            row[COLUMNS[:first_name]].strip,
-            format_campus(row[COLUMNS[:campus]].strip),
-            format_date(row[COLUMNS[:date_of_birth]].strip),
-            row[COLUMNS[:favorite_color]].strip
-          ]
+          results << PersonRecord.new(
+            last_name:      row[COLUMNS[:last_name]].strip,
+            first_name:     row[COLUMNS[:first_name]].strip,
+            campus:         format_campus(row[COLUMNS[:campus]].strip),
+            date_of_birth:  format_date(row[COLUMNS[:date_of_birth]].strip),
+            favorite_color: row[COLUMNS[:favorite_color]].strip
+          )
         end
 
         results
       end
 
       def format_date(date)
-        date
+        Date.strptime(date, '%m/%d/%Y')
       end
 
       def format_campus(campus)
