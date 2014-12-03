@@ -21,7 +21,7 @@ module StudentParser
 
     def sort
       if sort_by == [:campus, :last_name]
-        fields.sort! { |x,y| y[COLUMNS[:campus], COLUMNS[:last_name]] <=> x[COLUMNS[:campus], COLUMNS[:last_name]]}
+        fields.sort_by! { |x| [x[:campus], x[:last_name]]}
       else
         fields.sort! { |x,y| x[sort_by] <=> y[sort_by] }
       end
