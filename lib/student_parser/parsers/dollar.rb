@@ -3,7 +3,7 @@ module StudentParser
     class Dollar
       include Base
 
-      SEPERATOR = '$'
+      SEPARATOR = '$'
 
       COLUMNS = {:last_name      => 0,
                  :first_name     => 1,

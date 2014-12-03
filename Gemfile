@@ -8,7 +8,6 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'pry'
-  gem 'jbuilder'
 end
 
 group :test do

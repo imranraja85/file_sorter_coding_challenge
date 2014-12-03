@@ -10,18 +10,23 @@ module StudentParser
       PersonRecord = Struct.new(:last_name, :first_name, :campus, 
                                 :date_of_birth, :favorite_color)
 
-      attr_reader :data, :student_records, :klass
+      attr_reader :data, :student_records
 
       def initialize(path)
         @data = ::File.read(path)
         @student_records = []
-        @klass = self.class
+      end
+
+      def columns
+        self.class::COLUMNS  
+      end
+
+      def separator
+        self.class::SEPARATOR  
       end
       
       def extract
-        columns = klass::COLUMNS
-
-        CSV.parse(data, { :col_sep => klass::SEPERATOR }) do |row|
+        CSV.parse(data, { :col_sep => separator }) do |row|
           student_records << PersonRecord.new(
             row[columns[:last_name]].strip,
             row[columns[:first_name]].strip,
