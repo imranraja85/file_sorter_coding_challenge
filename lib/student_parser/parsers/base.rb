@@ -26,17 +26,16 @@ module StudentParser
       end
       
       def extract
-        CSV.parse(data, { :col_sep => delimiter }) do |row|
-          student_records << PersonRecord.new(
-            row[columns[:last_name]].strip,
-            row[columns[:first_name]].strip,
-            normalize_campus(row[columns[:campus]].strip),
-            format_date(row[columns[:date_of_birth]].strip),
-            row[columns[:favorite_color]].strip
-          )
-        end
-
+        CSV.parse(data, { :col_sep => delimiter }) {|row| student_records << build_record(row) }
         student_records
+      end
+
+      def build_record(row)
+        PersonRecord.new(row[columns[:last_name]].strip,
+                         row[columns[:first_name]].strip,
+                         normalize_campus(row[columns[:campus]].strip),
+                         format_date(row[columns[:date_of_birth]].strip),
+                         row[columns[:favorite_color]].strip)
       end
         
       def normalize_campus(campus)
