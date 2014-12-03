@@ -1,38 +1,15 @@
 module StudentParser
   class Sorter
-    attr_reader :fields, :sort_by, :direction
+    attr_reader :records
 
-    def self.call(options)
-      new(options).call
+    def initialize(records)
+      @records = records
     end
 
-    def initialize(options)
-      @fields    = options[:fields]
-      @sort_by   = options[:sort_by]
-      @direction = options[:direction]
-    end
-
-    def call
-      sort
-      reverse if descending?
-      
-      fields
-    end
-
-    def sort
-      fields.sort_by!{ |x| Array(sort_by).collect{|s| x[s]}}
-    end
-
-    def reverse
-      fields.reverse!  
-    end
-
-    def ascending?
-      direction == :asc  
-    end
-
-    def descending?
-      !ascending? 
+    def sort(column_names, direction = :asc)
+      records.sort_by!{ |x| Array(column_names).collect{|column_name| x[column_name]} }
+      records.reverse! if direction != :asc
+      records
     end
   end
 end
