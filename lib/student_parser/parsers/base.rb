@@ -1,9 +1,7 @@
 require 'csv' 
-require 'ostruct' 
 
 module StudentParser
   module Parsers
-    class PersonRecord < OpenStruct; end
     module Base
       attr_reader :data, :results
 
@@ -11,6 +9,8 @@ module StudentParser
                 "NYC" => "New York City",
                 "SF"  => "San Francisco"}
 
+      PersonRecord = Struct.new(:last_name, :first_name, :campus, 
+                                :date_of_birth, :favorite_color)
       def initialize(path)
         @data = ::File.read(path)
         @results = []
@@ -21,11 +21,11 @@ module StudentParser
 
         CSV.parse(data, { :col_sep => self.class::SEPERATOR }) do |row|
           results << PersonRecord.new(
-            last_name:      row[columns[:last_name]].strip,
-            first_name:     row[columns[:first_name]].strip,
-            campus:         normalize_campus(row[columns[:campus]].strip),
-            date_of_birth:  format_date(row[columns[:date_of_birth]].strip),
-            favorite_color: row[columns[:favorite_color]].strip
+            row[columns[:last_name]].strip,
+            row[columns[:first_name]].strip,
+            normalize_campus(row[columns[:campus]].strip),
+            format_date(row[columns[:date_of_birth]].strip),
+            row[columns[:favorite_color]].strip
           )
         end
 
