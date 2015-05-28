@@ -1,3 +1,4 @@
+require 'student_parser/parsers/base'
 require 'student_parser/sorter'
 
 describe StudentParser::Sorter do

@@ -7,8 +7,14 @@ module StudentParser
                 "NYC" => "New York City",
                 "SF"  => "San Francisco"}
 
-      PersonRecord = Struct.new(:last_name, :first_name, :campus, 
-                                :date_of_birth, :favorite_color)
+      PersonRecord = Struct.new(:last_name, :first_name, :campus, :date_of_birth, :favorite_color) do
+        def distance_from_birthday 
+          today = Date.today
+          normalized_birth = Date.new(today.year, date_of_birth.month, date_of_birth.day)
+          normalized_birth = normalized_birth.next_year if normalized_birth < today
+          (normalized_birth - today).to_i
+        end
+      end
 
       attr_reader :data, :student_records
 
