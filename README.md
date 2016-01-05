@@ -5,10 +5,7 @@ To install and run this app:
   2. To run: ruby -I lib/ runner.rb
   3. To run test suite: rspec spec
 
-## Here is the actual GA challenge:
-# <img src='https://cloud.githubusercontent.com/assets/544541/4461515/092962a4-48bb-11e4-8e4c-88bee6e5a321.jpg' width=50> Engineering Code Challenge
-
-To help us get a clearer picture of your skills as a developer, we kindly request you take our code challenge. We encourage you to limit yourself to **4 to 5 hours'** worth of effort.
+## Here is the challenge:
 
 ## Requirements
 
@@ -20,8 +17,6 @@ To help us get a clearer picture of your skills as a developer, we kindly reques
 * Besides a testing framework ([RSpec](https://github.com/rspec/rspec), [test-unit](https://github.com/test-unit/test-unit), or [minitest](https://github.com/seattlerb/minitest)), please only use Ruby and [its standard library](http://www.ruby-doc.org/stdlib/) (i.e. no other gems)
 
 * Please use the latest stable version of Ruby MRI
-
-* When finished, please send your solution to code-challenge@generalassemb.ly with instructions on how to run
 
 ## Criteria
 
