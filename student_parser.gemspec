@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = StudentParser::VERSION
   spec.authors       = ["Imran Raja"]
   spec.email         = ["imranraja85@gmail.com"]
-  spec.summary       = %q{Coding Challenge for General Assembly}
+  spec.summary       = %q{Coding Challenge}
   spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = "http://www.imranraja.com"
   spec.license       = "MIT"
